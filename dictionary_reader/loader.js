@@ -1,16 +1,11 @@
-var fs = require('fs');
-//var ui = require('./ui');
+const fs = require('fs');
 
 var loader = {
   scanDir: (dir, callback) => {
-    //let dictionaryArray = [];
     fs.readdir(dir, (err, data) => {
       if (err) throw err;
       callback(data);
-      //console.log(data);
-      //dictionaryArray.then(result => { ui.listDictionaries(result) });
     });
-    //return dictionaryArray;
   }
 }
 

@@ -1,6 +1,4 @@
-//var ui = require('./ui');
 const fs = require('fs');
-//const searcher = require('./searcher');
 
 var dictionary = {
   displayStats: (dictionary, callback) => {
@@ -35,7 +33,7 @@ var dictionary = {
         console.log(`${letter}: ${wordsByFirstLetterCount[letter]}`);
       }
       process.stdin.removeAllListeners('data');
-     callback();
+     callback(dictionary);
     })
   }
 }
