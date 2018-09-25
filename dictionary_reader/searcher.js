@@ -1,4 +1,5 @@
 const fs = require('fs');
+const saver = require('./saver');
 
 var searcher = {
   displaySearchOptions: () => {
@@ -10,6 +11,8 @@ var searcher = {
   },
 
   exactMatch: (dictionary, searchTerm) => {
+    process.stdin.removeAllListeners('data');
+
     fs.readFile(`./data/${dictionary}`, (err, data) => {
       data = JSON.parse(data);
       let entries = Object.keys(data);
@@ -17,10 +20,13 @@ var searcher = {
         return entry == searchTerm;
       })
       console.log(match);
+      saver.savePrompt(match);
     })
   },
 
   partialMatch: (dictionary, searchTerm) => {
+    process.stdin.removeAllListeners('data');
+
     fs.readFile(`./data/${dictionary}`, (err, data) => {
       data = JSON.parse(data);
       let entries = Object.keys(data);
@@ -28,10 +34,13 @@ var searcher = {
         return entry.includes(searchTerm);
       })
       console.log(match);
+      saver.savePrompt(match);
     })
   },
 
   beginsWith: (dictionary, searchTerm) => {
+    process.stdin.removeAllListeners('data');
+
     fs.readFile(`./data/${dictionary}`, (err, data) => {
       data = JSON.parse(data);
       let entries = Object.keys(data);
@@ -40,10 +49,13 @@ var searcher = {
         return regex.exec(entry);
       })
       console.log(match);
+      saver.savePrompt(match);
     })
   },
 
   endsWith: (dictionary, searchTerm) => {
+    process.stdin.removeAllListeners('data');
+
     fs.readFile(`./data/${dictionary}`, (err, data) => {
       data = JSON.parse(data);
       let entries = Object.keys(data);
@@ -52,6 +64,7 @@ var searcher = {
         return regex.exec(entry);
       })
       console.log(match);
+      saver.savePrompt(match);
     })
   }
 }

@@ -1,5 +1,6 @@
 const loader = require('./loader');
 const searcher = require('./searcher');
+const saver = require('./saver');
 
 var ui = {
   welcome: () => {
@@ -88,6 +89,25 @@ var ui = {
         console.log('Invalid entry; try again:')
       }
     });
+  }, 
+
+  askIfSave: () => {
+    console.log("Save results?");
+
+    process.stdin.on('data', data => {
+      data = data.trim();
+      
+      if (data == 'q') {
+        process.exit();
+      } else if (data == 'y') {
+        
+      } else if (data == 'n') {
+        searcher.partialMatch(dictionary, term);
+      } else {
+        console.log('Invalid entry; try again:')
+      }
+    });
+
   }
 }
 
